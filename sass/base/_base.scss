@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+// ORDER FOR MEDIA QUERIES INSERTION
+// Base + typography > general layout + grid > page layout > components
+
+html {
+	// Desktop first: media queries descendent order required to apply correctly
+	@include respond(big-desktop) {
+		font-size: 75%; // 1rem = 12px --> calculation: 12/16 = 75%
+	}
+
+	font-size: 62.5%;
+	// equivalent of 1rem = 10px compared to the 100% default browser setting for which is 1rem = 16px - calculation: 10/16 = 62.5%
+
+	@include respond(tab-land) {
+		font-size: 56.25%; // 1rem = 9px --> calculation: 9/16 = 56.25%
+	}
+
+	@include respond(tab-port) {
+		font-size: 50%; // 1rem = 8px --> calculation: 8/16 = 50%
+	}
+}
+
+body {
+	box-sizing: border-box;
+	padding: 1.5rem;
+
+	@include respond(tab-port) {
+		padding: 0;
+	}
+}
+
+::selection {
+	background-color: $color-primary;
+	color: $color-white;
+}
